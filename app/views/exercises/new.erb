@@ -1,0 +1,13 @@
+
+  <h2>Create a New Exercise Log:</h2>
+<br>
+<form action="/exercises" method="POST">
+  <label for="exercise_name">Name:</label><br>
+  <input type="text" name="exercise[name]"/><br><br>
+  <label for="exercise_muscle_group">Muscle Group:</label><br>
+  <input type="text" name="exercise[muscle_group]"/><br><br>
+  <input type="submit" value="Add Exercise to Workout List">
+</form>
+<br>
+<a class="button" href="/exercises">Back to My Exercises</a><br>
+<a class="button" href="/logout">Log Out</a><br>
