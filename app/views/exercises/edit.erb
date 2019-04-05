@@ -1,0 +1,21 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+  <h1>Edit Your Workout</h1>
+<br>
+<form action="/exercises/<%=@exercise.id%>" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+  <label for="exercise_name">Name:</label><br>
+  <input type="text" name="exercise[name]" value="<%=@exercise.name%>"><br>
+  <label for="exercise_muscle_group">Muscle Group:</label><br>
+  <input type="text" name="exercise[muscle_group]" value="<%=@exercise.muscle_group%>"><br>
+  <input type="submit" value="Update Your Workout Log">
+</form>
+<br>
+<br>
+  <h2>Delete From Workout Log</h2>
+<form action="/exercises/<%=@exercise.id%>/delete" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Exercise">
+</form>
