@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
       @user = User.find_by_slug(params[:slug])
-      erb :'users/show'
+      erb :'/users/show'
   end
 #log in and log out functionality
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if !logged_in?
-      erb :'users/signup'
+      erb :'/users/signup'
     else
       redirect to "/exercises"
     end

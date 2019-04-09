@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :exercises
   has_secure_password
 
-  validates :name, :email, presence: true
+  validates :username, :email, presence: true
   validates :email, uniqueness: true
 
   #add HTML validations (require + input tags)
