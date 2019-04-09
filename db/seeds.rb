@@ -9,3 +9,4 @@ Exercise.create(name: "Bench Press", muscle_group: "Chest", user_id: 2)
 Exercise.create(name: "Lat Pulldown", muscle_group: "Back", user_id: 3)
 Exercise.create(name: "Squats", muscle_group: "Legs", user_id: 4)
 Exercise.create(name: "Cardio", muscle_group: "N/A", user_id: 5)
+binding.pry

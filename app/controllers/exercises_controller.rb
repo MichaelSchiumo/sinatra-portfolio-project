@@ -26,9 +26,9 @@ class ExercisesController < ApplicationController
           @user = current_user
           @exercise = Exercise.create(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"], user_id: session[:user_id])
         if @exercise.save
-          redirect to '/exercises/#{@exercise.id}'
+          redirect to "/exercises/#{@exercise.id}"
         else
-          redirect to '/exercises/new'
+          redirect to "/exercises/new"
         end
       end
     else
