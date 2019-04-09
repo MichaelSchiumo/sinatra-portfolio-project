@@ -1,10 +1,10 @@
 <h2>View Exercises:</h2>
-<h3><%= @exercise.name %> - <%= @exercise.muscle_group %></a></h3>
-<a href="/exercises/<%= @exercise.id %>/edit">Edit Book</a>
+<h3><%= @exercise.name %> - <%= @exercise.muscle_group %></h3>
+<a href="/exercises/<%= @exercise.id %>/edit">Edit Exercise</a>
 <br>
 <br>
-<form action="/exercises/<=%@exercise.id%>/delete" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
+<form action="/exercises/<%=@exercise.id%>/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Exercise">
 </form>
 <br>

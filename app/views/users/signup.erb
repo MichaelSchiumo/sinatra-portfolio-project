@@ -1,9 +1,12 @@
 <h1>Welcome to Gym Buddy!</h1>
 <br>
 <h2>Signup Here:</h2>
+
+<#%= flash[:notice][0] if flash.has?(:notice) %>
+
 <form action="signup" method="POST">
   <p>Username: <input type="text" name="username" required></p>
-  <p>Email: <input type="text" name="email" required></p>
-  <p>Password: <input type="text" name="email" required></p>
+  <p>Email: <input type="email" name="email" required></p>
+  <p>Password: <input type="password" name="password" required></p>
   <input type="submit" value="Signup">
 </form>

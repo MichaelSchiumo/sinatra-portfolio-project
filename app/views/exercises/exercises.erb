@@ -6,7 +6,7 @@
 
 <% current_user.exercises.each do |exercise| %>
   <ul>
-    <li><a href="/exercises/<%=exercise.id%>"><%= exercise.name %> - <%= exercise.muscle_group %></a></li>
+    <li><a href="/exercises/<%=exercise.id %>"><%= exercise.name %> - <%= exercise.muscle_group %></a></li>
   </ul>
 <% end %>
 

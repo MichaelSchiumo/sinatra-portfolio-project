@@ -19,13 +19,14 @@ class ExercisesController < ApplicationController
 
   post '/exercises' do
     if logged_in?
-      if params["exercise"]["name"]= "" || params["exercise"]["muscle_group"]= ""
+      if params["exercise"]["name"]== "" || params["exercise"]["muscle_group"]== ""
         flash[:message] = "Please fill in all fields."
         redirect to '/exercises/new'
       else
           @user = current_user
           @exercise = Exercise.create(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"], user_id: session[:user_id])
         if @exercise.save
+          @user.exercises << @exercise
           redirect to "/exercises/#{@exercise.id}"
         else
           redirect to "/exercises/new"
@@ -38,14 +39,14 @@ class ExercisesController < ApplicationController
 
   get '/exercises/:id' do
     if logged_in?
-      @exercise = @exercise.find_by_id[params(:id)]
-      erb :'/tweets/show'
+      @exercise = Exercise.find_by_id(params[:id])
+      erb :'/exercises/show'
     end
   end
 
   get '/exercises/:id/edit' do
     if logged_in?
-      @exercise = Exercise.find_by_id[params(:id)]
+      @exercise = Exercise.find_by_id(params[:id])
       if @exercise && @exercise.user == current_user
         erb :'/exercises/edit'
       else
@@ -58,10 +59,10 @@ class ExercisesController < ApplicationController
 
   patch '/exercises/:id' do
     if logged_in?
-      if params["exercise"]["name"]= "" || params["exercise"]["muscle_group"]= ""
+      if params["exercise"]["name"]== "" || params["exercise"]["muscle_group"]== ""
         redirect to "/exercises/:id/edit"
       else
-        @exercise = @exercise.find_by_id(id: params[:id])
+        @exercise = Exercise.find_by_id(params[:id])
       if @exercise && @exercise.user = current_user
         if @exercise.update(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"])
           flash[:message] = "Nice job! You have successfully updated this exercise."
@@ -75,15 +76,15 @@ class ExercisesController < ApplicationController
 
   delete '/exercises/:id/delete' do
     if logged_in?
-      @exercise = @exercise.find_by_id(id: params[:id])
+      @exercise = Exercise.find_by_id(params[:id])
       if @exercise && @exercise.user == current_user
         @exercise.delete
-        flash[:message] = "This exercise has been successfully deleted."
       end
         redirect to '/exercises'
     else
         redirect to '/login'
     end
   end
- end
+end
+
 end
