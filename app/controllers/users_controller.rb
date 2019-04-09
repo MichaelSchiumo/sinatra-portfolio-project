@@ -6,11 +6,20 @@ class UsersController < ApplicationController
   end
 #log in and log out functionality
 
+  get '/users/:id' do
+    if !logged_in?
+      redirect to '/login'
+    else
+      @user = User.find_by(id: session[:user_id])
+      erb :'/users/show'
+    end
+  end
+
   get '/signup' do
     if !logged_in?
-      erb :'/users/create_user'
+      erb :'users/signup'
     else
-      redirect to '/exercises'
+      redirect to "/exercises"
     end
   end
 
@@ -27,16 +36,16 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if logged_in?
-      erb :'/users/login'
+    if !logged_in?
+      erb :'users/login'
     else
       redirect to "/exercises"
     end
   end
 
   post '/login' do
-    @user = @user.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect to '/exercises'
     else
