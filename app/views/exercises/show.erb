@@ -1,0 +1,12 @@
+<h2>View Exercises:</h2>
+<h3><%= @exercise.name %> - <%= @exercise.muscle_group %></a></h3>
+<a href="/exercises/<%= @exercise.id %>/edit">Edit Book</a>
+<br>
+<br>
+<form action="/exercises/<=%@exercise.id%>/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Exercise">
+</form>
+<br>
+<a class="button" href="/exercises">Back to My Gym Buddy</a><br>
+<a class="button" href="/logout">Logout</a><br>

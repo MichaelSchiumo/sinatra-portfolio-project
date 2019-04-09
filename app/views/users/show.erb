@@ -1,0 +1,10 @@
+<h1>My Workout Plan</h1>
+<p>Hello! Here are your exercises, <%=@user.username%></p>
+<h3>Exercises to Complete: <% current_user.exercises.each do |exercise| %>
+  <ul>
+    <li><a href="/exercises/<%= @exercise.id %>"><%= exercise.name %> - <%= exercise.muscle_group %></a></li>
+  </ul>
+<% end %>
+<br>
+<a href="/exercises/new">Add New Exercise</a><br>
+<a href="/logout">Log Out</a>
