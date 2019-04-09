@@ -2,12 +2,13 @@
 <br>
 <h2>Here are your workouts on Gym Buddy:</h2>
 <p>Click on an exercise to edit or delete:</p>
-  <% @user.each do |exercise| %>
-  <div>
-    <%= exercise.name %>
-    <%= exercise.muscle_group %>
-  </div>
-  <% end %>
+
+
+<% current_user.exercises.each do |exercise| %>
+  <ul>
+    <li><a href="/exercises/<%=exercise.id%>"><%= exercise.name %> - <%= exercise.muscle_group %></a></li>
+  </ul>
+<% end %>
 
   <br>
   <a href="/exercises/new">Add New Exercise</a><br>
