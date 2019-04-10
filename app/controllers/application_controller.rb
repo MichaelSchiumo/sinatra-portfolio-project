@@ -16,6 +16,18 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  delete '/exercises/:id/delete' do
+    if logged_in?
+      @exercise = Exercise.find_by_id(params[:id])
+      if @exercise && @exercise.user == current_user
+        @exercise.delete
+      end
+      redirect to '/exercises'
+    else
+      redirect to '/login'
+    end
+  end
+
   helpers do
     def logged_in?
       !!current_user

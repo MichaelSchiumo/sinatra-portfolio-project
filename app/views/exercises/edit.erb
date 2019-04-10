@@ -15,8 +15,8 @@
 <br>
 <br>
   <h2>Delete From Workout Log</h2>
-<form method="POST" action="/exercises/<%= @exercise.id %>/delete">
-  <input type="hidden" id="hidden" name="_method" value="DELETE">
+<form method="POST" action="/exercises/<%=@exercise.id%>/delete">
+  <input type="hidden" id="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Exercise">
 </form>
 <br>

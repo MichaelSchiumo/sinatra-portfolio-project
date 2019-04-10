@@ -63,7 +63,7 @@ class ExercisesController < ApplicationController
         redirect to "/exercises/:id/edit"
       else
         @exercise = Exercise.find_by_id(params[:id])
-      if @exercise && @exercise.user = current_user
+      if @exercise && @exercise.user == current_user
         if @exercise.update(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"])
           flash[:message] = "Nice job! You have successfully updated this exercise."
           redirect to '/exercises'
@@ -73,18 +73,17 @@ class ExercisesController < ApplicationController
       end
     end
   end
-
-  delete '/exercises/:id/delete' do
-    if logged_in?
-      @exercise = Exercise.find_by_id(params[:id])
-      if @exercise && @exercise.user == current_user
-        @exercise.delete
-      end
-        redirect to '/exercises'
-    else
-        redirect to '/login'
-    end
-  end
 end
-
 end
+#   delete '/exercises/:id/delete' do
+#     if logged_in?
+#       @exercise = Exercise.find_by_id(params[:id])
+#       if @exercise && @exercise.user == current_user
+#         @exercise.delete
+#       end
+#       redirect to '/exercises'
+#     else
+#       redirect to '/login'
+#     end
+#   end
+# end
