@@ -16,6 +16,7 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  #added flash message
   delete '/exercises/:id/delete' do
     @exercise = Exercise.find_by_id(params[:id])
     if @exercise && @exercise.user == current_user
