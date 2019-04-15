@@ -17,6 +17,7 @@ class ExercisesController < ApplicationController
     end
   end
 
+  #refactored
   post '/exercises' do
     if params["exercise"]["name"]== "" || params["exercise"]["muscle_group"]== ""
         flash[:message] = "Please fill in all fields."
@@ -47,6 +48,7 @@ class ExercisesController < ApplicationController
   end
 
 #refactor patch (utilize active record and don't create empty objects)
+#simplified to not use any if/else statements
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
     @exercise && @exercise.user == current_user
