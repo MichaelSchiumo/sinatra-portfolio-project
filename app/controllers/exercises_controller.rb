@@ -18,22 +18,15 @@ class ExercisesController < ApplicationController
   end
 
   post '/exercises' do
-    if logged_in?
-      if params["exercise"]["name"]== "" || params["exercise"]["muscle_group"]== ""
+    if params["exercise"]["name"]== "" || params["exercise"]["muscle_group"]== ""
         flash[:message] = "Please fill in all fields."
         redirect to '/exercises/new'
-      else
-          @user = current_user
-          @exercise = Exercise.create(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"], user_id: session[:user_id])
-        if @exercise.save
-          @user.exercises << @exercise
-          redirect to "/exercises/#{@exercise.id}"
-        else
-          redirect to "/exercises/new"
-        end
-      end
     else
-      redirect to '/login'
+      @user = current_user
+      @exercise = Exercise.create(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"], user_id: session[:user_id])
+      @exercise.user_id = @user.id
+      @exercise.save
+      redirect to "/exercises"
     end
   end
 
@@ -53,35 +46,12 @@ class ExercisesController < ApplicationController
     end
   end
 
-
 #refactor patch (utilize active record and don't create empty objects)
   patch '/exercises/:id' do
-      if logged_in?
-        if params["exercise"]["name"]== "" || params["exercise"]["muscle_group"]== ""
-          redirect to "/exercises/:id/edit"
-        else
-          @exercise = Exercise.find_by_id(params[:id])
-        if @exercise && @exercise.user == current_user
-          if @exercise.update(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"])
-            flash[:message] = "Nice job! You have successfully updated this exercise."
-            redirect to '/exercises'
-          else
-            redirect to '/exercises'
-          end
-        end
-      end
+    @exercise = Exercise.find_by_id(params[:id])
+    @exercise && @exercise.user == current_user
+    @exercise.update(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"])
+      flash[:message] = "Nice job! You have successfully updated this exercise."
+      redirect to "/exercises/#{@exercise.id}"
     end
   end
-end
-#   delete '/exercises/:id/delete' do
-#     if logged_in?
-#       @exercise = Exercise.find_by_id(params[:id])
-#       if @exercise && @exercise.user == current_user
-#         @exercise.delete
-#       end
-#       redirect to '/exercises'
-#     else
-#       redirect to '/login'
-#     end
-#   end
-# end

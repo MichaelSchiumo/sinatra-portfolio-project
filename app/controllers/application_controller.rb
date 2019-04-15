@@ -17,24 +17,22 @@ class ApplicationController < Sinatra::Base
   end
 
   delete '/exercises/:id/delete' do
-    if logged_in?
-      @exercise = Exercise.find_by_id(params[:id])
-      if @exercise && @exercise.user == current_user
-        @exercise.delete
-      end
-      redirect to '/exercises'
-    else
-      redirect to '/login'
+    @exercise = Exercise.find_by_id(params[:id])
+    if @exercise && @exercise.user == current_user
+      @exercise.delete
     end
+      flash[:message] = "Your exercise has been deleted."
+      redirect to '/exercises'
   end
+
 
   helpers do
     def current_user
-      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id])
     end
 
     def logged_in?
-      !!current_user
+      session.has_key?(:user_id)
     end
   end
 end
