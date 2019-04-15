@@ -17,7 +17,7 @@ class ExercisesController < ApplicationController
     end
   end
 
-  #refactored
+  #refactored and added flash message
   post '/exercises' do
     if params["exercise"]["name"]== "" || params["exercise"]["muscle_group"]== ""
         flash[:message] = "Please fill in all fields."
