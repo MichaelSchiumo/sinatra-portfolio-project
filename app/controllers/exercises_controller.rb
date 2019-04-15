@@ -49,6 +49,7 @@ class ExercisesController < ApplicationController
 
 #refactor patch (utilize active record and don't create empty objects)
 #simplified to not use any if/else statements
+#added flash message  
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
     @exercise && @exercise.user == current_user
