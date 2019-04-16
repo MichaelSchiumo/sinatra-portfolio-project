@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if !logged_in?
       redirect to '/login'
     else
-      @user = User.find_by(id: session[:user_id])
+      @user = current_user
       erb :'/users/show'
     end
   end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         flash[:message] = "Welcome to Gym Buddy! It's time to get to work!"
         redirect to '/exercises'
       else
-        flash[:notice] = @user.errors.full_messages
+        flash[:messages] = @user.errors.full_messages
         redirect to '/signup'
     end
   end

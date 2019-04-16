@@ -2,8 +2,11 @@
 <br>
 <h2>Signup Here:</h2>
 
-<%= flash[:notice][0] if flash.has?(:notice) %>
-
+<% if flash.has?(:messages) %>
+<% flash[:messages].each do |message| %>
+  <p><%= message %></p> 
+<% end %>
+<% end %>
 <form action="signup" method="POST">
   <p>Username: <input type="text" name="username" required></p>
   <p>Email: <input type="email" name="email" required></p>

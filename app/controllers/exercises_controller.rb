@@ -62,9 +62,11 @@ class ExercisesController < ApplicationController
 #added flash message
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
-    @exercise && @exercise.user == current_user
-    @exercise.update(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"])
+    if @exercise && @exercise.user == current_user
+      @exercise.update(params["exercise"])
       flash[:message] = "Nice job! You have successfully updated this exercise."
       redirect to "/exercises/#{@exercise.id}"
+    end
+      redirect to "/exercises"
   end
 end
