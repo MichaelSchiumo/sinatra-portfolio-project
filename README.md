@@ -12,7 +12,7 @@ Usage:
 Generate a user account by creating a username, email, and password. Users can only view and edit their own content.
 
 Contributing:
-Bug reports and pull requests are welcome on GitHub at git@github.com:MichaelSchiumo/sinatra-portfolio-project.git. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at git@github.com:MichaelSchiumo/sinatra-portfolio-project.git. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant Code of Conduct.
 
 License:
 The gem is available as open source under the terms of the MIT License.
