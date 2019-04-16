@@ -2,7 +2,7 @@
 <br>
 <h2>Signup Here:</h2>
 
-<#%= flash[:notice][0] if flash.has?(:notice) %>
+<%= flash[:notice][0] if flash.has?(:notice) %>
 
 <form action="signup" method="POST">
   <p>Username: <input type="text" name="username" required></p>

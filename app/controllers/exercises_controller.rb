@@ -47,14 +47,24 @@ class ExercisesController < ApplicationController
     end
   end
 
+  #added flash message
+  delete '/exercises/:id/delete' do
+    @exercise = Exercise.find_by_id(params[:id])
+    if @exercise && @exercise.user == current_user
+      @exercise.delete
+    end
+      flash[:message] = "Your exercise has been deleted."
+      redirect to '/exercises'
+  end
+
 #refactor patch (utilize active record and don't create empty objects)
 #simplified to not use any if/else statements
-#added flash message  
+#added flash message
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
     @exercise && @exercise.user == current_user
     @exercise.update(name: params["exercise"]["name"], muscle_group: params["exercise"]["muscle_group"])
       flash[:message] = "Nice job! You have successfully updated this exercise."
       redirect to "/exercises/#{@exercise.id}"
-    end
   end
+end
